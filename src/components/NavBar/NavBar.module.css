@@ -1,0 +1,29 @@
+.wrapper{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 2px;
+    overflow: hidden;
+    background-color: white;
+    border-bottom: 1px solid #dcd8d8;
+}
+.wrapper li{
+    float: right;
+}
+.wrapper li:last-child {
+    border-right: none;
+}
+.wrapper li a {
+    display: block;
+    color: #5d5d5d;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.wrapper li a:hover:not(.active) {
+    background-color: #b0a2a2;
+    border-radius: 0.5rem;
+}
+.wrapper li img{
+    height: 42px;
+}
