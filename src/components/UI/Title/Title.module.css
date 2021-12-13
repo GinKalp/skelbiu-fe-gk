@@ -1,0 +1,8 @@
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    font-weight: normal;
+    font-size: 25px;
+}
