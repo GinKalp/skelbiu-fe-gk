@@ -1,7 +1,9 @@
 import React from "react";
 import * as Yup from "yup";
 import { FormikHandler, initValuesFunc } from "../../helpers/formikHelper";
-import Form from "../UI/Form";
+import Form from "../UI/Form/Form";
+import Title from "../UI/Title/Title";
+import css from "./RegisterForm.module.css";
 
 const formFields = [
   { name: "username", placeholder: "Enter username", type: "text" },
@@ -27,10 +29,16 @@ const validationSchema = Yup.object({
 const initInputs = initValuesFunc(formFields);
 
 const RegisterForm = () => {
-  const formik = FormikHandler(initInputs, validationSchema, "check");
+  const formik = FormikHandler(
+    initInputs,
+    validationSchema,
+    "post",
+    "auth/register"
+  );
 
   return (
-    <div>
+    <div className={`container ${css.wrapper}`}>
+      <Title title={"Register"} />
       <Form arr={formFields} formik={formik} target={"Register"} />
     </div>
   );

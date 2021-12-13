@@ -1,10 +1,12 @@
 import React from "react";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
+import css from "./Form.module.css";
+import Button from "../Button/Button";
 
 const Form = ({ arr, formik, target, selectName, optionsArr }) => {
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form className={css.form} onSubmit={formik.handleSubmit}>
       {arr.map((item) => (
         <FormInput key={item.name} item={item} formik={formik} />
       ))}
@@ -19,7 +21,7 @@ const Form = ({ arr, formik, target, selectName, optionsArr }) => {
         </>
       )}
       <br />
-      <button type={"submit"}>{target}</button>
+      <Button type={"submit"}>{target}</Button>
     </form>
   );
 };

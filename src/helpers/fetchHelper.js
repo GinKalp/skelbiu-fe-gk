@@ -17,6 +17,21 @@ export async function postFetch(url, dataToSend) {
     toast.error(error);
   }
 }
+export async function postImage(url, dataToSend) {
+  try {
+    const resp = await fetch(url, {
+      method: "POST",
+      body: dataToSend,
+    });
+    console.log(dataToSend);
+    // console.log('resp ===', resp);
+    const data = await resp.json();
+    return data;
+  } catch (error) {
+    console.log("catch block error", error);
+    toast.error(error);
+  }
+}
 export async function getFetch(url) {
   try {
     const resp = await fetch(url);

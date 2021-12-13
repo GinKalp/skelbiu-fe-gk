@@ -1,11 +1,16 @@
 .wrapper{
+    background-color: white;
+}
+.wrapper > div{
+    display: flex;
+    border-bottom: 1px solid #dcd8d8;
+}
+.wrapper ul{
     list-style-type: none;
-    margin: 0;
     padding: 0;
     padding-top: 2px;
     overflow: hidden;
-    background-color: white;
-    border-bottom: 1px solid #dcd8d8;
+
 }
 .wrapper li{
     float: right;
@@ -24,6 +29,8 @@
     background-color: #b0a2a2;
     border-radius: 0.5rem;
 }
-.wrapper li img{
+.wrapper img{
     height: 42px;
+    display: inline-block;
+    cursor: pointer;
 }
