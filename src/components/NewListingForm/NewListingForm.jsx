@@ -28,7 +28,7 @@ const NewListingForm = () => {
     initInputs,
     validationSchema,
     "image",
-    "products/add-new"
+    "listings/add-new"
   );
 
   return (

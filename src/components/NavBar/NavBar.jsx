@@ -8,6 +8,7 @@ const initArr = [
   { id: 2, name: "Register", link: "/register", show: true },
   { id: 3, name: "Login", link: "/login", show: true },
   { id: 4, name: "Logout", link: "/", show: false },
+  { id: 5, name: "Home", link: "/", show: true },
 ];
 
 const NavBar = () => {
@@ -24,14 +25,14 @@ const NavBar = () => {
     if (isLoggedIn) {
       setNavArr(
         navArr.map((item) => {
-          return { ...item, show: !item.show };
+          return { ...item, show: item.name === "Home" ? true : !item.show };
         })
       );
     }
     if (!isLoggedIn) {
       setNavArr(
         navArr.map((item) => {
-          return { ...item, show: !item.show };
+          return { ...item, show: item.name === "Home" ? true : !item.show };
         })
       );
     }
@@ -46,8 +47,9 @@ const NavBar = () => {
           {navArr.map((item) => (
             <>
               {item.show && (
-                <li className={"nav-item"} key={item.id}>
+                <li key={item.id} className={"nav-item"}>
                   <NavLink
+                    key={item.id}
                     onClick={item.name === "Logout" ? () => logout() : null}
                     activeClassName={"active"}
                     exact

@@ -27,12 +27,11 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
         formData.append("title", values.title);
         formData.append("body", values.body);
         formData.append("price", values.price);
+        formData.append("user_id", 1);
+        formData.append("category_id", 1);
         formData.append("image", values.image);
         // no header needed
-        const options = {
-          method: "POST",
-          body: formData,
-        };
+
         console.log(formData.get("image"));
         const dbData = await postImage(`${url}/${urlEnd}`, formData);
         if (dbData.msg) {
