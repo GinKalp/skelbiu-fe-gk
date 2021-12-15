@@ -6,7 +6,7 @@ const ListingsItem = ({ item }) => {
     <div className={css.card}>
       <img
         className={css.img}
-        src={`${process.env.REACT_APP_URL}/images/${item.image}`}
+        src={`${process.env.REACT_APP_URL_NEW}/images/${item.image}`}
         alt={""}
       />
       <div className={css.container}>
