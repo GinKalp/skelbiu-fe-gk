@@ -3,7 +3,7 @@ import css from "./HomePage.module.css";
 import ListingsList from "../components/Listings/ListingsList";
 import { getFetch } from "../helpers/fetchHelper";
 
-const url = process.env.REACT_APP_URL;
+const url = process.env.REACT_APP_URL_NEW;
 
 const HomePage = () => {
   const [listings, setListings] = useState([]);

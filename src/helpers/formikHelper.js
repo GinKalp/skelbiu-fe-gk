@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useAuthCtx } from "../store/authContext";
 import { useHistory } from "react-router-dom";
 
-const url = process.env.REACT_APP_URL;
+const url = process.env.REACT_APP_URL_NEW;
 
 export function initValuesFunc(arr) {
   const obj = {};

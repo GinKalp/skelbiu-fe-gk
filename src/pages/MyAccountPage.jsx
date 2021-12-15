@@ -7,7 +7,7 @@ import ListingsList from "../components/Listings/ListingsList";
 import { getFetchAuth } from "../helpers/fetchHelper";
 import { useAuthCtx } from "../store/authContext";
 
-const url = process.env.REACT_APP_URL;
+const url = process.env.REACT_APP_URL_NEW;
 
 const MyAccountPage = () => {
   const [listings, setListings] = useState([]);
