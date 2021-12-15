@@ -18,8 +18,8 @@ const NavBar = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      setNavArr(
-        navArr.map((item) => {
+      setNavArr((n) =>
+        n.map((item) => {
           return { ...item, show: item.name === "Home" ? true : !item.show };
         })
       );

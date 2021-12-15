@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Title from "../components/UI/Title/Title";
-import { Link, Route, Switch } from "react-router-dom";
 import Button from "../components/UI/Button/Button";
 import NewListingForm from "../components/NewListingForm/NewListingForm";
 import css from "./MyAccountPage.module.css";
@@ -24,13 +23,12 @@ const MyAccountPage = () => {
       );
       console.log(gotData);
       setListings(gotData.data);
-      console.log(listings);
     })();
 
     return () => {
       setListings([]);
     };
-  }, []);
+  }, [authData.token]);
 
   return (
     <div className={"container"}>

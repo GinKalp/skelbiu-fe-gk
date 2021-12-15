@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { postFetch, postImage, postListing } from "./fetchHelper";
+import { postFetch, postListing } from "./fetchHelper";
 import { toast } from "react-hot-toast";
 import { useAuthCtx } from "../store/authContext";
 import { useHistory } from "react-router-dom";
@@ -51,6 +51,7 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
           console.log(dbData);
           dbData.error.map((item) => {
             setFieldError(item.field, item.errorMsg);
+            return false;
           });
         }
       }

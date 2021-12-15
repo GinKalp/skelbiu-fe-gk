@@ -7,6 +7,7 @@ const ListingsItem = ({ item }) => {
       <img
         className={css.img}
         src={`${process.env.REACT_APP_URL}/images/${item.image}`}
+        alt={""}
       />
       <div className={css.container}>
         <h4>

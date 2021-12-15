@@ -11,9 +11,8 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       const gotData = await getFetch(url + "/listings");
-      console.log(gotData);
+      // console.log(gotData);
       setListings(gotData.data);
-      console.log(listings);
     })();
 
     return () => {
