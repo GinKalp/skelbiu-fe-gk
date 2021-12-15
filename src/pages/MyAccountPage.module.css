@@ -1,0 +1,8 @@
+.dFlex{
+    display: flex;
+    align-items: center;
+}
+.dFlex button{
+    width: 150px;
+    height: 50px;
+}

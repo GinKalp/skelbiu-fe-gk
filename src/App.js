@@ -7,8 +7,10 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import MyAccountPage from "./pages/MyAccountPage";
 import Footer from "./components/Footer/Footer";
+import { useAuthCtx } from "./store/authContext";
 
 function App() {
+  const { isLoggedIn } = useAuthCtx();
   return (
     <div className="App">
       <Toaster />
@@ -20,11 +22,16 @@ function App() {
         <Route path={"/register"}>
           <RegisterPage />
         </Route>
-        <Route path={"/my-account"}>
-          <MyAccountPage />
-        </Route>
+        {isLoggedIn && (
+          <Route path={"/my-account"}>
+            <MyAccountPage />
+          </Route>
+        )}
         <Route exact path={"/"}>
           <HomePage />
+        </Route>
+        <Route path={"*"}>
+          <h1 className={"container"}>Oops, page not found.</h1>
         </Route>
       </Switch>
       <Footer />

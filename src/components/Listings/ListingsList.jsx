@@ -1,26 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import css from "./ListingsList.module.css";
-import { getFetch } from "../../helpers/fetchHelper";
 import ListingsItem from "./ListingsItem";
 
-const url = process.env.REACT_APP_URL;
-
-const ListingsList = () => {
-  const [listings, setListings] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const gotData = await getFetch(url + "/listings");
-      console.log(gotData);
-      setListings(gotData.data);
-      console.log(listings);
-    })();
-
-    return () => {
-      setListings([]);
-    };
-  }, []);
-
+const ListingsList = ({ listings }) => {
   return (
     <div className={`container ${css.list}`}>
       {listings.map((item) => (

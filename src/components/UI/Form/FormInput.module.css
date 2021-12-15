@@ -3,3 +3,6 @@
     font-weight: normal;
     color: #646464;
 }
+.error{
+    border-color: red;
+}

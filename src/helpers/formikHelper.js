@@ -1,7 +1,8 @@
 import { useFormik } from "formik";
-import { postFetch, postImage } from "./fetchHelper";
+import { postFetch, postImage, postListing } from "./fetchHelper";
 import { toast } from "react-hot-toast";
 import { useAuthCtx } from "../store/authContext";
+import { useHistory } from "react-router-dom";
 
 const url = process.env.REACT_APP_URL;
 
@@ -15,11 +16,12 @@ export function initValuesFunc(arr) {
 }
 
 export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
-  const { login } = useAuthCtx();
+  const history = useHistory();
+  const { login, authData } = useAuthCtx();
   return useFormik({
     initialValues: initInputs,
     validationSchema: validationSchema,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm, setFieldError }) => {
       // console.log(values);
 
       if (type === "image") {
@@ -27,30 +29,43 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
         formData.append("title", values.title);
         formData.append("body", values.body);
         formData.append("price", values.price);
-        formData.append("user_id", 1);
+        // formData.append("user_id", 1);
         formData.append("category_id", 1);
         formData.append("image", values.image);
         // no header needed
 
-        console.log(formData.get("image"));
-        const dbData = await postImage(`${url}/${urlEnd}`, formData);
+        // console.log(formData.get("image"));
+        const dbData = await postListing(
+          `${url}/${urlEnd}`,
+          formData,
+          authData.token
+        );
         if (dbData.msg) {
-          toast.success(`data sent`);
-          console.log(dbData);
+          toast.success(`Listing added`);
+          // console.log(dbData);
+          history.go(0);
+          return;
           // resetForm({ values: "" });
+        }
+        if (dbData.error) {
+          console.log(dbData);
+          dbData.error.map((item) => {
+            setFieldError(item.field, item.errorMsg);
+          });
         }
       }
       try {
         if (type === "post") {
           const dbData = await postFetch(`${url}/${urlEnd}`, values);
           console.log(dbData);
-          if (dbData.data.token) {
+          if (dbData.data?.token) {
             login(dbData.data.token, dbData.data.username);
             resetForm({ values: "" });
+            history.push("/my-account");
             return;
           }
           if (dbData.msg) {
-            toast.success(`data sent`);
+            toast.success(`User registered`);
             resetForm({ values: "" });
           }
         }
