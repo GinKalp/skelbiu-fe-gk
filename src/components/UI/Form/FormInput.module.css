@@ -3,6 +3,10 @@
     font-weight: normal;
     color: #646464;
 }
+.input{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 .error{
     border-color: red;
 }

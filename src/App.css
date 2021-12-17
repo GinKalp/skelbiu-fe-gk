@@ -13,7 +13,17 @@ body{
   width: 100%;
   max-width: 1170px;
   margin: 0 auto;
+  min-height: calc(100vh - 119px);
+
+}
+.container-simple{
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
 }
 .nav-item .active{
   color: tomato;
+}
+button{
+  display: inline-block;
 }

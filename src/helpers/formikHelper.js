@@ -4,8 +4,6 @@ import { toast } from "react-hot-toast";
 import { useAuthCtx } from "../store/authContext";
 import { useHistory } from "react-router-dom";
 
-const url = process.env.REACT_APP_URL_NEW;
-
 export function initValuesFunc(arr) {
   const obj = {};
   arr.forEach((item) => {
@@ -24,7 +22,7 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
     onSubmit: async (values, { resetForm, setFieldError }) => {
       // console.log(values);
 
-      if (type === "image") {
+      if (type === "listing") {
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("body", values.body);
@@ -36,7 +34,7 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
 
         // console.log(formData.get("image"));
         const dbData = await postListing(
-          `${url}/${urlEnd}`,
+          `/${urlEnd}`,
           formData,
           authData.token
         );
@@ -57,20 +55,39 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
       }
       try {
         if (type === "post") {
-          const dbData = await postFetch(`${url}/${urlEnd}`, values);
-          console.log(dbData);
+          const dbData = await postFetch(`/${urlEnd}`, values);
+          // console.log(dbData);
+          // console.log(values);
+
+          if (dbData.error) {
+            if (Array.isArray(dbData.error)) {
+              dbData.error.map((item) => {
+                setFieldError(item.field, item.errorMsg);
+                return false;
+              });
+            }
+            if (dbData.error === "username already exists") {
+              setFieldError("username", dbData.error);
+            }
+
+            return console.log(dbData.error);
+          }
           if (dbData.data?.token) {
+            // login outcome
             login(dbData.data.token, dbData.data.username);
             resetForm({ values: "" });
             history.push("/my-account");
             return;
           }
           if (dbData.msg) {
+            // register outcome
             toast.success(`User registered`);
             resetForm({ values: "" });
+            history.push("/login");
           }
         }
         if (type === "check") {
+          // for testing
           toast.success("fields valid");
           resetForm({ values: "" });
         }

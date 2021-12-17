@@ -2,4 +2,7 @@
     border: 1px solid #b6b6b6;
     background-color: white;
     padding: 15px;
+    border-radius: 1rem;
+    max-width: 1000px;
+
 }

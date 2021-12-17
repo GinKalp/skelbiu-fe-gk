@@ -5,7 +5,7 @@ import css from "./RegisterPage.module.css";
 const RegisterPage = () => {
   return (
     <div className={css.body}>
-      <h2 className={`container ${css.title}`}>My Account</h2>
+      <h2 className={`container-simple ${css.title}`}>Create New Account</h2>
       <RegisterForm />
     </div>
   );

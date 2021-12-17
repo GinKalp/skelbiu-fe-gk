@@ -8,25 +8,25 @@ const FormInput = ({ item, formik }) => {
       {item.name === "image" ? (
         <input
           name={item.name}
-          className={
+          className={`${css.input} ${
             formik.touched[item.name] && formik.errors[item.name] && css.error
-          }
+          }`}
           onChange={(e) => formik.setFieldValue("image", e.target.files[0])}
           type={item.type}
           onBlur={formik.handleBlur}
-          placeholder={item.placeholder}
+          // placeholder={item.placeholder}
         />
       ) : (
         <input
           name={item.name}
           onChange={formik.handleChange}
-          className={
+          className={`${css.input} ${
             formik.touched[item.name] && formik.errors[item.name] && css.error
-          }
+          }`}
           value={formik.values[item.name]}
           type={item.type}
           onBlur={formik.handleBlur}
-          placeholder={item.placeholder}
+          // placeholder={item.placeholder}
         />
       )}
 

@@ -9,6 +9,8 @@ const formFields = [
   { name: "username", placeholder: "Enter username", type: "text" },
   { name: "password", placeholder: "Enter password", type: "password" },
   { name: "repeatPassword", placeholder: "Repeat password", type: "password" },
+  { name: "town", placeholder: "Enter town", type: "text" },
+  { name: "phone", placeholder: "Enter phone number", type: "text" },
 ];
 
 const validationSchema = Yup.object({
@@ -17,13 +19,18 @@ const validationSchema = Yup.object({
     .max(15, "maximum 15 characters")
     .required(),
   password: Yup.string()
-    .min(4, "minimum 4 characters")
-    .max(15, "maximum 15 characters")
+    .min(6, "minimum 6 characters")
+    .max(20, "maximum 20 characters")
     .required(),
   repeatPassword: Yup.string().oneOf(
     [Yup.ref("password"), null],
     "Passwords must match"
   ),
+  town: Yup.string().min(4, "minimum 4 characters").required(),
+  phone: Yup.string()
+    .min(9, "minimum 9 characters")
+    .max(15, "maximum 15 characters")
+    .required(),
 });
 
 const initInputs = initValuesFunc(formFields);
@@ -37,7 +44,7 @@ const RegisterForm = () => {
   );
 
   return (
-    <div className={`container ${css.wrapper}`}>
+    <div className={`container-simple ${css.wrapper}`}>
       <Title title={"Register"} />
       <Form arr={formFields} formik={formik} target={"Register"} />
     </div>

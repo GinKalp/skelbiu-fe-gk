@@ -4,8 +4,8 @@ import css from "./LoginPage.module.css";
 
 const LoginPage = () => {
   return (
-    <div className={css.body}>
-      <h2 className={`container ${css.title}`}>My Account</h2>
+    <div className={` ${css.body}`}>
+      <h2 className={`container-simple ${css.title}`}>Login existing user</h2>
       <LoginForm />
     </div>
   );

@@ -1,5 +1,8 @@
 .form {
-    width: 40%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
 }
 .form input {
     width: 100%;
@@ -7,4 +10,6 @@
 }
 .form button{
     margin-top: 10px;
+    max-width: 100px;
+    margin: 0 auto;
 }

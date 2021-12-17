@@ -1,8 +1,10 @@
 import { toast } from "react-hot-toast";
 
-export async function postFetch(url, dataToSend) {
+const url = process.env.REACT_APP_URL_NEW;
+
+export async function postFetch(urlEnd, dataToSend) {
   try {
-    const resp = await fetch(url, {
+    const resp = await fetch(url + urlEnd, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,9 +19,9 @@ export async function postFetch(url, dataToSend) {
     toast.error(error);
   }
 }
-export async function postListing(url, dataToSend, token) {
+export async function postListing(urlEnd, dataToSend, token) {
   try {
-    const resp = await fetch(url, {
+    const resp = await fetch(url + urlEnd, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -35,9 +37,9 @@ export async function postListing(url, dataToSend, token) {
     toast.error(error);
   }
 }
-export async function getFetch(url) {
+export async function getFetch(urlEnd) {
   try {
-    const resp = await fetch(url);
+    const resp = await fetch(url + urlEnd);
     // console.log('resp ===', resp);
     const data = await resp.json();
     return data;
@@ -46,9 +48,9 @@ export async function getFetch(url) {
     toast.error(error);
   }
 }
-export async function getFetchAuth(url, token) {
+export async function getFetchAuth(urlEnd, token) {
   try {
-    const resp = await fetch(url, {
+    const resp = await fetch(url + urlEnd, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -32,7 +32,7 @@ const LoginForm = () => {
   );
 
   return (
-    <div className={`container ${css.wrapper}`}>
+    <div className={`container-simple ${css.wrapper}`}>
       <Title title={"Login"} />
       <Form arr={formFields} formik={formik} target={"Login"} />
     </div>

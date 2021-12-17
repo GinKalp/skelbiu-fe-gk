@@ -17,17 +17,18 @@ const NavBar = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      setNavArr((n) =>
-        n.map((item) => {
-          return { ...item, show: item.name === "Home" ? true : !item.show };
-        })
-      );
-    }
-    if (!isLoggedIn) {
-      const newArr = initArr;
-      setNavArr(newArr);
-    }
+    // if (isLoggedIn) {
+    setNavArr(() =>
+      initArr.filter((item) => {
+        // return { ...item, show: item.name === "Home" ? true : !item.show };
+        return item.name === "Home" || item.show === !isLoggedIn;
+      })
+    );
+    // }
+    // if (!isLoggedIn) {
+    //   const newArr = initArr;
+    //   setNavArr(newArr);
+    // }
   }, [isLoggedIn]);
   const onLogout = (e) => {
     e.preventDefault();
@@ -35,31 +36,43 @@ const NavBar = () => {
     history.push("/");
   };
 
-  console.log(navArr);
+  // console.log(navArr);
   return (
-    <nav className={css.wrapper}>
-      <div className={"container"}>
-        <img onClick={() => history.push("/")} src="/img/logo.png" alt="" />
-        <ul className={`container`}>
-          {navArr.map((item) => (
-            <li key={item.id} className={"nav-item"}>
-              {item.show && (
-                <NavLink
-                  key={item.id}
-                  onClick={item.name === "Logout" ? onLogout : null}
-                  activeClassName={"active"}
-                  exact
-                  to={item.link}
-                >
-                  {item.name}
-                </NavLink>
-              )}
-            </li>
-          ))}
+    <div className={css.wrapper}>
+      <div className={`${css.navContainer}`}>
+        <div>
+          <img onClick={() => history.push("/")} src="/img/logo.png" alt="" />
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            className={css.checkbox}
+            id="burger-check"
+            defaultChecked={true}
+          />
+          <label htmlFor="burger-check" className={css.burger}>
+            <i className="fa fa-bars" />
+          </label>
+        </div>
+
+        <nav className={css.links}>
+          {/*{navArr.map((item) => (*/}
+          {/*  <NavLink*/}
+          {/*    className={css.navItem}*/}
+          {/*    key={item.id}*/}
+          {/*    onClick={item.name === "Logout" ? onLogout : null}*/}
+          {/*    activeClassName={"active"}*/}
+          {/*    exact*/}
+          {/*    to={item.link}*/}
+          {/*  >*/}
+          {/*    {item.name}*/}
+          {/*  </NavLink>*/}
+          <NavLink to={"/"}>Homer</NavLink>
+          {/*))}*/}
           {isLoggedIn && <li className={css.user}>{authData.username}</li>}
-        </ul>
+        </nav>
       </div>
-    </nav>
+    </div>
   );
 };
 

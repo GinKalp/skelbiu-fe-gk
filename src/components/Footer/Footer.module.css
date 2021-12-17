@@ -3,4 +3,10 @@
     height: 70px;
     display: flex;
     align-items: center;
+    text-align: center;
+}
+.footerContainer{
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
 }
