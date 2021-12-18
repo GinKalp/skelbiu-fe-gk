@@ -33,3 +33,20 @@
 .card button{
     margin: 5px;
 }
+.price{
+    background-color: gold;
+    color: #5f05b6;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 0.5rem;
+}
+.info{
+    display: flex;
+    justify-content: space-around;
+    /*text-align: start;*/
+    /*max-width: 80%;*/
+}
+.icon{
+    color: #1aa78e;
+}

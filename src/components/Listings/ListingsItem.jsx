@@ -47,8 +47,21 @@ const ListingsItem = ({ item, onModify, onDelete }) => {
         <h4>
           <b>{item.title}</b>
         </h4>
-        <p>{item.body}</p>
-        <h3>${item.price.toFixed(2)}</h3>
+        <p className={css.info}>
+          <i className={`fa fa-tag ${css.icon}`} aria-hidden="true" />
+          <span>{item.cat_name}</span>
+        </p>
+        <p className={css.info}>
+          <i className={`fa fa-address-card ${css.icon}`} aria-hidden="true" />
+          <span>
+            <i>{item.town}</i>
+          </span>
+        </p>
+        <p className={css.info}>
+          <i className={`fa fa-user-o ${css.icon}`} aria-hidden="true" />
+          <span>{item.username}</span>
+        </p>
+        <h3 className={css.price}>${item.price.toFixed(2)}</h3>
         {isLoggedIn && window.location.pathname === "/my-account" && (
           <Button onClick={() => onModify(item)}>Modify</Button>
         )}
