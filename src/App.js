@@ -8,16 +8,13 @@ import RegisterPage from "./pages/RegisterPage";
 import MyAccountPage from "./pages/MyAccountPage";
 import Footer from "./components/Footer/Footer";
 import { useAuthCtx } from "./store/authContext";
-import NavBar2 from "./components/NavBar/NavBar2";
-import NavBar3 from "./components/NavBar/NavBar3";
-import Navbar1 from "./components/NavBar/Navbar1";
 
 function App() {
   const { isLoggedIn } = useAuthCtx();
   return (
     <div className="App">
       <Toaster />
-      <NavBar3 />
+      <NavBar />
       <Switch>
         <Route path={"/login"}>
           <LoginPage />

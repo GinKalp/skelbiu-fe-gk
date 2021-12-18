@@ -21,7 +21,7 @@ body{
   max-width: 1170px;
   margin: 0 auto;
 }
-.nav-item .active{
+nav a.active{
   color: tomato;
 }
 button{
