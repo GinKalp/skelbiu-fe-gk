@@ -3,7 +3,7 @@ import { FormikHandler, initValuesFunc } from "../../helpers/formikHelper";
 import * as Yup from "yup";
 import Form from "../UI/Form/Form";
 import Title from "../UI/Title/Title";
-import css from "./NewListingForm.module.css";
+import css from "./ListingForm.module.css";
 
 const formFields = [
   { name: "title", placeholder: "Enter title", type: "text" },
@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
   image: Yup.string().min(4, "minimum 4 characters"),
 });
 
-const NewListingForm = ({ item }) => {
+const ListingForm = ({ item }) => {
   let formik;
   if (item) {
     // console.log("item", item);
@@ -64,4 +64,4 @@ const NewListingForm = ({ item }) => {
   );
 };
 
-export default NewListingForm;
+export default ListingForm;

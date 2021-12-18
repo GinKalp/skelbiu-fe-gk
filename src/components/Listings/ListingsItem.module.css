@@ -4,7 +4,7 @@
     transition: 0.3s;
     border-radius: 5px;
     width: 200px;
-    height: 346px;
+    min-height: 346px;
 }
 .img {
     border-radius: 5px 5px 0 0;
@@ -29,4 +29,7 @@
     padding-bottom: 1px;
     border-radius: 5px;
     cursor: pointer;
+}
+.card button{
+    margin: 5px;
 }

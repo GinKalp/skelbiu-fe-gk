@@ -7,7 +7,7 @@ import Button from "../components/UI/Button/Button";
 
 const HomePage = () => {
   const [listings, setListings] = useState([]);
-  const { authData, logout } = useAuthCtx();
+  const { authData, logout, isLoggedIn } = useAuthCtx();
   const [isFilter, setIsFilter] = useState(false);
   const [allListings, setAllListings] = useState([]);
 
@@ -42,9 +42,11 @@ const HomePage = () => {
   return (
     <div className={css.main}>
       <h2 className={`${css.title}`}>Welcome to our Page</h2>
-      <Button onClick={onFilter}>
-        {!isFilter ? "Show favorites" : "Show All"}
-      </Button>
+      {isLoggedIn && (
+        <Button onClick={onFilter}>
+          {!isFilter ? "Show favorites" : "Show All"}
+        </Button>
+      )}
       <ListingsList listings={listings} />
     </div>
   );

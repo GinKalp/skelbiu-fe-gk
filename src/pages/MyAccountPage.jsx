@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Title from "../components/UI/Title/Title";
 import Button from "../components/UI/Button/Button";
-import NewListingForm from "../components/NewListingForm/NewListingForm";
+import ListingForm from "../components/ListingForm/ListingForm";
 import css from "./MyAccountPage.module.css";
 import ListingsList from "../components/Listings/ListingsList";
-import { getFetchAuth } from "../helpers/fetchHelper";
+import { deleteListingFetch, getFetchAuth } from "../helpers/fetchHelper";
 import { useAuthCtx } from "../store/authContext";
 
 const MyAccountPage = () => {
@@ -35,6 +35,12 @@ const MyAccountPage = () => {
     setItem(item);
     setIsModify(!isModify);
   };
+  const onDelete = async (item) => {
+    const filteredArr = listings.filter((listing) => listing !== item);
+    setListings(filteredArr);
+    await deleteListingFetch(`/listings/delete/${item.id}`, authData.token);
+    // console.log(dbData);
+  };
 
   return (
     <div className={"container"}>
@@ -45,10 +51,15 @@ const MyAccountPage = () => {
         </Button>
       </div>
       {!addNewShow && !isModify && (
-        <ListingsList onModify={onModify} listings={listings} />
+        <ListingsList
+          onDelete={onDelete}
+          onModify={onModify}
+          listings={listings}
+        />
       )}
-      {addNewShow && !isModify && <NewListingForm />}
-      {isModify && <NewListingForm item={item} />}
+
+      {addNewShow && !isModify && <ListingForm />}
+      {isModify && <ListingForm item={item} />}
     </div>
   );
 };

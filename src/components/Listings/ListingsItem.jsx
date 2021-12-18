@@ -4,7 +4,7 @@ import { getFetchAuth } from "../../helpers/fetchHelper";
 import { useAuthCtx } from "../../store/authContext";
 import Button from "../UI/Button/Button";
 
-const ListingsItem = ({ item, onModify }) => {
+const ListingsItem = ({ item, onModify, onDelete }) => {
   const { isLoggedIn, authData } = useAuthCtx();
   const [favorited, setFavorited] = useState(
     isLoggedIn ? item.fav_user : false
@@ -51,6 +51,11 @@ const ListingsItem = ({ item, onModify }) => {
         <h3>${item.price.toFixed(2)}</h3>
         {isLoggedIn && window.location.pathname === "/my-account" && (
           <Button onClick={() => onModify(item)}>Modify</Button>
+        )}
+        {isLoggedIn && window.location.pathname === "/my-account" && (
+          <Button del onClick={() => onDelete(item)}>
+            Delete
+          </Button>
         )}
       </div>
     </div>

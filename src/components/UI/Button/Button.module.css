@@ -1,3 +1,13 @@
+.btnMain {
+    display: inline-block;
+    background-color: #1aa78e;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
 .btnInverted {
     background-color: #fcaf01;
     display: inline-block;
@@ -11,10 +21,9 @@
     border-radius: 4px;
 
 }
-
-.btnMain {
+.delete{
     display: inline-block;
-    background-color: #1aa78e;
+    background-color: #d90e0e;
     color: white;
     border: none;
     font-size: 16px;

@@ -63,3 +63,19 @@ export async function getFetchAuth(urlEnd, token) {
     toast.error(error);
   }
 }
+export async function deleteListingFetch(urlEnd, token) {
+  try {
+    const resp = await fetch(url + urlEnd, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log('resp ===', resp);
+    const data = await resp.json();
+    return data;
+  } catch (error) {
+    console.log("catch block error", error);
+    toast.error(error);
+  }
+}
