@@ -9,16 +9,14 @@ const HomePage = () => {
   const [listings, setListings] = useState([]);
   const { authData, logout, isLoggedIn } = useAuthCtx();
   const [isFilter, setIsFilter] = useState(false);
-  const [allListings, setAllListings] = useState([]);
 
   useEffect(() => {
     (async () => {
       const gotData = await getFetchAuth("/listings", authData.token);
       console.log(gotData);
       if (gotData.error === "token expired/invalid") {
-        logout();
+        return logout();
       }
-      setAllListings(gotData?.data);
       setListings(gotData?.data);
       // console.log(authData.token);
     })();
@@ -28,14 +26,20 @@ const HomePage = () => {
     };
   }, [authData.token, logout]);
 
-  const onFilter = () => {
+  const onFilter = async () => {
+    const gotData = await getFetchAuth("/listings", authData.token);
+    // console.log(gotData);
+    if (gotData.error === "token expired/invalid") {
+      return logout();
+    }
+
     if (!isFilter) {
-      const filteredArr = listings.filter((item) => item.fav_user);
-      console.log(filteredArr);
+      const filteredArr = gotData.data.filter((item) => item.fav_user);
+      // console.log(filteredArr);
       setListings(filteredArr);
       setIsFilter(!isFilter);
     } else {
-      setListings(allListings);
+      setListings(gotData.data);
       setIsFilter(!isFilter);
     }
   };
