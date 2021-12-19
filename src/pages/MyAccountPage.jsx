@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Title from "../components/UI/Title/Title";
 import Button from "../components/UI/Button/Button";
 import ListingForm from "../components/ListingForm/ListingForm";
 import css from "./MyAccountPage.module.css";
@@ -18,7 +17,7 @@ const MyAccountPage = () => {
   useEffect(() => {
     (async () => {
       const gotData = await getFetchAuth("/listings/by-user", authData.token);
-      console.log(gotData);
+      // console.log(gotData);
       if (gotData.error === "token expired/invalid") {
         logout();
       }
@@ -31,7 +30,7 @@ const MyAccountPage = () => {
   }, [authData.token, logout]);
 
   const onModify = (item) => {
-    console.log(item);
+    // console.log(item);
     setItem(item);
     setIsModify(!isModify);
   };
@@ -46,9 +45,17 @@ const MyAccountPage = () => {
     <div className={"container"}>
       <div className={css.dFlex}>
         <h2>My Account Page</h2>
-        <Button onClick={() => setAddNewShow(!addNewShow)} inverted>
-          {!addNewShow ? "Add new item" : "Back"}
-        </Button>
+        {!isModify && (
+          <Button onClick={() => setAddNewShow(!addNewShow)} inverted>
+            {!addNewShow && "Add new item"}
+            {addNewShow && "Back"}
+          </Button>
+        )}
+        {isModify && (
+          <Button onClick={() => setIsModify(!isModify)} inverted>
+            Back
+          </Button>
+        )}
       </div>
       {!addNewShow && !isModify && (
         <ListingsList

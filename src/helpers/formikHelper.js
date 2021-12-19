@@ -23,23 +23,25 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
       // console.log(values);
 
       if (type === "listing") {
+        console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("body", values.body);
         formData.append("price", values.price);
         // formData.append("user_id", 1);
-        formData.append("category_id", 1);
+        formData.append("category_id", values.category);
         formData.append("image", values.image);
         // no header needed
 
-        // console.log(formData.get("image"));
+        // console.log(formData.get("category_id"));
         const dbData = await postListing(
           `/${urlEnd}`,
           formData,
           authData.token
         );
         if (dbData.msg) {
-          toast.success(`Listing added`);
+          console.log(dbData.msg);
+          toast.success(dbData.msg);
           // console.log(dbData);
           history.go(0);
           return;
@@ -69,8 +71,8 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
             if (dbData.error === "username already exists") {
               setFieldError("username", dbData.error);
             }
-
-            return console.log(dbData.error);
+            // console.log(dbData.error);
+            return;
           }
           if (dbData.data?.token) {
             // login outcome
@@ -92,7 +94,7 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
           resetForm({ values: "" });
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
   });

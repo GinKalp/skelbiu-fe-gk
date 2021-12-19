@@ -15,7 +15,7 @@ export async function postFetch(urlEnd, dataToSend) {
     const data = await resp.json();
     return data;
   } catch (error) {
-    console.log("catch block error", error);
+    // console.log("catch block error", error);
     toast.error(error);
   }
 }
@@ -33,7 +33,7 @@ export async function postListing(urlEnd, dataToSend, token) {
     const data = await resp.json();
     return data;
   } catch (error) {
-    console.log("catch block error", error);
+    // console.log("catch block error", error);
     toast.error(error);
   }
 }
@@ -44,7 +44,7 @@ export async function getFetch(urlEnd) {
     const data = await resp.json();
     return data;
   } catch (error) {
-    console.log("catch block error", error);
+    // console.log("catch block error", error);
     toast.error(error);
   }
 }
@@ -59,7 +59,7 @@ export async function getFetchAuth(urlEnd, token) {
     const data = await resp.json();
     return data;
   } catch (error) {
-    console.log("catch block error", error);
+    // console.log("catch block error", error);
     toast.error(error);
   }
 }
@@ -75,7 +75,7 @@ export async function deleteListingFetch(urlEnd, token) {
     const data = await resp.json();
     return data;
   } catch (error) {
-    console.log("catch block error", error);
+    // console.log("catch block error", error);
     toast.error(error);
   }
 }

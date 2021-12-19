@@ -13,7 +13,7 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       const gotData = await getFetchAuth("/listings", authData.token);
-      console.log(gotData);
+      // console.log(gotData);
       if (gotData.error === "token expired/invalid") {
         return logout();
       }

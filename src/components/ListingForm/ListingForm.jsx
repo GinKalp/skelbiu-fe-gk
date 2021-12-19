@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FormikHandler, initValuesFunc } from "../../helpers/formikHelper";
 import * as Yup from "yup";
 import Form from "../UI/Form/Form";
 import Title from "../UI/Title/Title";
 import css from "./ListingForm.module.css";
+import { getFetch } from "../../helpers/fetchHelper";
 
 const formFields = [
   { name: "title", placeholder: "Enter title", type: "text" },
@@ -25,14 +26,20 @@ const validationSchema = Yup.object({
 });
 
 const ListingForm = ({ item }) => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const dbData = await getFetch("/listings/categories");
+      // console.log(dbData);
+      setCategories(dbData.data);
+    })();
+    return () => {
+      setCategories([]);
+    };
+  }, []);
+
   let formik;
   if (item) {
-    // console.log("item", item);
-    // initInputs = {
-    //   ...initInputs,
-    //   ...item,
-    // };
-    // console.log("initInputs", initInputs);
     formik = FormikHandler(
       {
         ...initInputs,
@@ -54,8 +61,10 @@ const ListingForm = ({ item }) => {
 
   return (
     <div className={css.wrapper}>
-      <Title title={"Add new item"} />
+      <Title title={item ? "Update an item" : "Add new item"} />
       <Form
+        selectName={"category"}
+        optionsArr={categories}
         arr={formFields}
         formik={formik}
         target={!item ? "Add" : "Update"}
