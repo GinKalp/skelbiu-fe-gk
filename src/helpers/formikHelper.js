@@ -67,11 +67,16 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
                 setFieldError(item.field, item.errorMsg);
                 return false;
               });
+              return;
             }
-            if (dbData.error === "username already exists") {
-              setFieldError("username", dbData.error);
-            }
-            // console.log(dbData.error);
+            setFieldError("username", dbData.error);
+            // if (dbData.error === "username already exists") {
+            //   setFieldError("username", dbData.error);
+            // }
+            // // console.log(dbData.error);
+            // if (dbData.error === "User not found") {
+            //   setFieldError("username", dbData.error);
+            // }
             return;
           }
           if (dbData.data?.token) {
