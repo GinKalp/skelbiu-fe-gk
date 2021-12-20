@@ -24,17 +24,13 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
 
       if (type === "listing") {
         // console.log(values);
-        // values.category = "";
-        // console.log(values.category);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("body", values.body);
         formData.append("price", values.price);
-        // formData.append("user_id", 1);
         formData.append("category_id", values.category);
         formData.append("image", values.image);
         // no header needed
-
         // console.log(formData.get("category_id"));
         const dbData = await postListing(
           `/${urlEnd}`,
@@ -42,16 +38,11 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
           authData.token
         );
         if (dbData.msg) {
-          // console.log(dbData.msg);
           toast.success(dbData.msg);
-          // console.log(dbData);
           history.push("/");
           return;
-          // resetForm({ values: "" });
         }
         if (dbData.error) {
-          // console.log(dbData);
-
           dbData.error.map((item) => {
             setFieldError(item.field, item.errorMsg);
             return false;
@@ -61,9 +52,6 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
       try {
         if (type === "post") {
           const dbData = await postFetch(`/${urlEnd}`, values);
-          // console.log(dbData);
-          // console.log(values);
-
           if (dbData.error) {
             if (Array.isArray(dbData.error)) {
               dbData.error.map((item) => {
@@ -73,13 +61,6 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
               return;
             }
             setFieldError("username", dbData.error);
-            // if (dbData.error === "username already exists") {
-            //   setFieldError("username", dbData.error);
-            // }
-            // // console.log(dbData.error);
-            // if (dbData.error === "User not found") {
-            //   setFieldError("username", dbData.error);
-            // }
             return;
           }
           if (dbData.data?.token) {
