@@ -10,3 +10,10 @@
     max-width: 1170px;
     margin: 0 auto;
 }
+@media (max-width: 800px) {
+    .footerContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

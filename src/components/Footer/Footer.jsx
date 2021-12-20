@@ -5,7 +5,8 @@ const Footer = () => {
   return (
     <footer className={` ${css.footer}`}>
       <div className={css.footerContainer}>
-        © Copyright 2021. Designed and Developed by Gintaras Kalpokas
+        <span>© Copyright 2021.</span>{" "}
+        <span>Designed and Developed by Gintaras Kalpokas</span>
       </div>
     </footer>
   );
