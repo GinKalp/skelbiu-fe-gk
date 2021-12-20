@@ -45,7 +45,7 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
           // console.log(dbData.msg);
           toast.success(dbData.msg);
           // console.log(dbData);
-          history.go(0);
+          history.push("/");
           return;
           // resetForm({ values: "" });
         }

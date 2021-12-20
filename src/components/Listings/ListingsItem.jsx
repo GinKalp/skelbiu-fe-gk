@@ -3,8 +3,10 @@ import css from "./ListingsItem.module.css";
 import { getFetchAuth } from "../../helpers/fetchHelper";
 import { useAuthCtx } from "../../store/authContext";
 import Button from "../UI/Button/Button";
+import { useHistory } from "react-router-dom";
 
 const ListingsItem = ({ item, onModify, onDelete }) => {
+  const history = useHistory();
   const { isLoggedIn, authData } = useAuthCtx();
   const [favorited, setFavorited] = useState(
     isLoggedIn ? item.fav_user : false
@@ -17,7 +19,7 @@ const ListingsItem = ({ item, onModify, onDelete }) => {
 
   return (
     <div className={css.card}>
-      {isLoggedIn && window.location.pathname !== "/my-account" && (
+      {isLoggedIn && history.location.pathname !== "/my-account" && (
         <>
           {!favorited && (
             <i
@@ -59,10 +61,10 @@ const ListingsItem = ({ item, onModify, onDelete }) => {
           <span>{item.username}</span>
         </p>
         <h3 className={css.price}>${item.price.toFixed(2)}</h3>
-        {isLoggedIn && window.location.pathname === "/my-account" && (
+        {isLoggedIn && history.location.pathname === "/my-account" && (
           <Button onClick={() => onModify(item)}>Modify</Button>
         )}
-        {isLoggedIn && window.location.pathname === "/my-account" && (
+        {isLoggedIn && history.location.pathname === "/my-account" && (
           <Button del onClick={() => onDelete(item)}>
             Delete
           </Button>
