@@ -13,6 +13,7 @@ const Footer = React.lazy(() => import("./components/Footer/Footer"));
 
 function App() {
   const { isLoggedIn } = useAuthCtx();
+
   return (
     <div className="App">
       <Toaster />
