@@ -10,11 +10,8 @@ const ListingsItem = ({ item, onModify, onDelete }) => {
     isLoggedIn ? item.fav_user : false
   );
   const onFavorite = async () => {
-    const fetchData = await getFetchAuth(
-      `/favorites/${item.id}`,
-      authData.token
-    );
-    console.log(fetchData);
+    await getFetchAuth(`/favorites/${item.id}`, authData.token);
+    // console.log(fetchData);
     setFavorited(!favorited);
   };
 

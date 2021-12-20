@@ -14,6 +14,8 @@ const formFields = [
 ];
 
 let initInputs = initValuesFunc(formFields);
+// console.log(initInputs);
+initInputs.category = "";
 
 const validationSchema = Yup.object({
   title: Yup.string()
@@ -23,6 +25,7 @@ const validationSchema = Yup.object({
   body: Yup.string().min(4, "minimum 4 characters").required(),
   price: Yup.number().required(),
   image: Yup.string().min(4, "minimum 4 characters"),
+  category: Yup.number().min(1).required(),
 });
 
 const ListingForm = ({ item }) => {

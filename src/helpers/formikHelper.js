@@ -23,7 +23,9 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
       // console.log(values);
 
       if (type === "listing") {
-        console.log(values);
+        // console.log(values);
+        // values.category = "";
+        // console.log(values.category);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("body", values.body);
@@ -40,7 +42,7 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
           authData.token
         );
         if (dbData.msg) {
-          console.log(dbData.msg);
+          // console.log(dbData.msg);
           toast.success(dbData.msg);
           // console.log(dbData);
           history.go(0);
@@ -48,7 +50,8 @@ export function FormikHandler(initInputs, validationSchema, type, urlEnd) {
           // resetForm({ values: "" });
         }
         if (dbData.error) {
-          console.log(dbData);
+          // console.log(dbData);
+
           dbData.error.map((item) => {
             setFieldError(item.field, item.errorMsg);
             return false;

@@ -12,8 +12,7 @@ export async function postFetch(urlEnd, dataToSend) {
       body: JSON.stringify(dataToSend),
     });
     // console.log('resp ===', resp);
-    const data = await resp.json();
-    return data;
+    return await resp.json();
   } catch (error) {
     // console.log("catch block error", error);
     toast.error(error);
@@ -28,10 +27,9 @@ export async function postListing(urlEnd, dataToSend, token) {
       },
       body: dataToSend,
     });
-    console.log(dataToSend);
+    // console.log(dataToSend);
     // console.log('resp ===', resp);
-    const data = await resp.json();
-    return data;
+    return await resp.json();
   } catch (error) {
     // console.log("catch block error", error);
     toast.error(error);
@@ -41,8 +39,7 @@ export async function getFetch(urlEnd) {
   try {
     const resp = await fetch(url + urlEnd);
     // console.log('resp ===', resp);
-    const data = await resp.json();
-    return data;
+    return await resp.json();
   } catch (error) {
     // console.log("catch block error", error);
     toast.error(error);
@@ -56,8 +53,7 @@ export async function getFetchAuth(urlEnd, token) {
       },
     });
     // console.log('resp ===', resp);
-    const data = await resp.json();
-    return data;
+    return await resp.json();
   } catch (error) {
     // console.log("catch block error", error);
     toast.error(error);
@@ -72,8 +68,7 @@ export async function deleteListingFetch(urlEnd, token) {
       },
     });
     // console.log('resp ===', resp);
-    const data = await resp.json();
-    return data;
+    return await resp.json();
   } catch (error) {
     // console.log("catch block error", error);
     toast.error(error);
